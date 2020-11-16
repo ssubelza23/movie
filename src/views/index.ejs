@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Todas las peliculas'}) %>
+<body>
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+	
+	<!-- todos los productos -->
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Todas las peliculas</h2>
+			</div>
+			<% peliculas.map((result)=>{ %>
+				
+			<div class="col-sm-12 col-md-6 col-lg-3">
+				<a href="/products/detail/<%= result.id%>">
+					<div class="card text-white bg-dark mb-3 shadow-sm p-3 mb-5 bg-black rounded text-white">
+					  
+					  <div class="card-body">
+						<h5 class="card-title"><%= result.title %></h5>
+						<p class="card-text">This is a short card.</p>
+					  </div>
+					</div>
+				</a>
+				</div>
+			
+			<% }) %>
+	</div>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+		  <li class="page-item disabled">
+			<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+		  </li>
+		  <li class="page-item"><a class="page-link" href="/?limit=1">1</a></li>
+		  <li class="page-item"><a class="page-link" href="/?limit=1">2</a></li>
+		  <li class="page-item"><a class="page-link" href="/?limit=1">3</a></li>
+		  <li class="page-item">
+			<a class="page-link" href="#">Next</a>
+		  </li>
+		</ul>
+	  </nav>
+	<!-- /todos los productos -->
+
+	<!-- footer
+	<%- include('partials/footer') %>
+	/footer -->
+</body>	
+</html>

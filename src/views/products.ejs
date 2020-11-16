@@ -1,0 +1,48 @@
+«<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Todas las peliculas'}) %>
+<body>
+	<!-- Header -->
+	<link rel="stylesheet" href="../../public/css/app.css">
+	<link rel="stylesheet" href="../../public/css/bootstrap-grid.min.css">
+
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+	<!-- todos los productos -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Todas las peliculas</h2>
+			</div>
+			<% products.map((result)=>{ %>
+			<div class="col-12 col-sm-6 col-lg-3">
+				
+				<section class="product-box">
+					
+					<a href="/products/detail/<%= result.id%>">
+						<figure class="product-box_image">
+							<img src="/images/products/<%= result.image %>" alt="imagen de producto">
+						</figure>
+						<article class="product-box_data">
+							<h2><%= result.price %></h2>
+							<span><%= result.discount %></span>
+							<p><%= result.name %></p>
+							<i class="fas fa-truck"></i>
+						</article>
+					</a>
+					
+				</section>
+				
+			</div>
+			<% }) %>
+		</div>
+	</div>
+	<!-- /todos los productos -->
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>

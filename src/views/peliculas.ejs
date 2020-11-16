@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Todas las peliculas'}) %>
+<body>
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+
+	<!-- todos los productos -->
+	<div class="container align-content-center">
+		<div class="row">
+					<div class="col-6">
+						<h2 class="products-title">Todas las peliculas</h2>
+					</div>
+					<div class="col-4">
+						<form class="form-inline">
+						  <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+						</form>
+					</div>
+					<div class="col-2">
+						<button type="button" class="btn btn-primary">Primary</button>
+					</div>
+					<div class="col-12">
+				<table class="table table-bordered table-hover">
+					<thead>
+					  <tr>
+						<th scope="col">numero</th>
+						<th scope="col">title</th>
+						
+						<th scope="col">genero</th>
+						<th scope="col">actores</th>
+					  </tr>
+					</thead>
+					<tbody>
+						
+						<% peliculas.map((result)=>{ %>
+					  <tr>
+						<th scope="row"><%= ++offset %></th>
+						<td><%= result.title %></td>
+						<% if(result.Genre == null) { %>
+						<td>sin genero</td>
+						<% }else{%>
+							<td><%=  result.Genre.name %></td>
+							<% }%>
+						<td><% result.actores.map((r)=>{ %>
+							<%= r.first_name + ' '+r.last_name+',' %>
+							<% }) %></td>
+					  </tr>
+					  <% }) %>
+					</tbody>
+				  </table>
+				  </div>
+				  <div class="col-12">
+				  <nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-end">
+					  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					  <li class="page-item"><a class="page-link" href="/movies?limit=<%=limit%>&offset=<%=offset%>">1</a></li>
+					  <li class="page-item"><a class="page-link" href="/movies?limit=<%=limit%>&offset=<%=limit%>">2</a></li>
+					  <li class="page-item"><a class="page-link" href="#">3</a></li>
+					  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				  </nav>
+				  </div>
+			</div>
+
+				
+			
+		</div>
+	</div>
+
+
+	<!-- /todos los productos -->
+
+	<!-- footer
+	<%- include('partials/footer') %>
+	/footer -->
+</body>	
+</html>
