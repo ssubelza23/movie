@@ -6,7 +6,7 @@ var upload=multer
 
 const controller = {
 	index: async  (req, res) => {
-		console.log(req.query.limit)
+	
 		
 		try {
 			const peliculas= await Movie.findAll();

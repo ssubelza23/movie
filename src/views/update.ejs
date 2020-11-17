@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Todas las peliculas'}) %>
+<body>
+	<%- include('partials/headerNavbar') %>
+	<div class="container align-content-center">
+		<div class="row">
+					
+<div class="col-9">
+	<form action="/movies/update/<%=pelicula.id%>/?_method=PUT" method="POST">
+		<div class="form-row">
+		  <div class="form-group col-md-6">
+			<label for="title">Titulo</label>
+			<input type="text" class="form-control" id="title" name="title" value="<%=pelicula.title%>">
+		  </div>
+		  <div class="form-group col-md-6">
+			<label for="rating">Rating</label>
+			<input type="text" class="form-control" id="rating" name="rating" value="<%=pelicula.rating%>">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="awards">Premios</label>
+		  <input type="text" class="form-control" id="awards" name="awards" value="<%=pelicula.awards%>">
+		</div>
+		<div class="form-group">
+		  <label for="release_date">Estreno</label>
+		  <input type="date" class="form-control" id="release_date"  name="release_date" value="<%=pelicula.release_date%>">
+		</div>
+		<div class="form-row">
+		  <div class="form-group col-md-6">
+			<label for="length">Duracion</label>
+			<input type="text" class="form-control" id="length" name="length" value="<%=pelicula.length%>">
+		  </div>
+		  <div class="form-group col-md-4">
+			<label for="genre_id">Genero</label>
+			<select id="genre_id" class="form-control" name="genre_id" >
+
+			  <%generos.map(g=>{%>
+				<%if (pelicula.Genre==g.id){%>
+			  <option selected value="<%=g.id%>"><%=g.name%></option>
+			  <%}else{%>
+				<option  value="<%=g.id%>"><%=g.name%></option>
+			  <%}})%>
+			</select>
+		  </div>
+		</div>
+		
+		<div class="form-group">
+			<label for="actores">Actores</label>
+			<select multiple class="form-control" id="actores" name="actores">
+				<%actores.map(a=>{%>
+					<% if (pelicula.actores.some(actorPelicula => actorPelicula.id==a.id)){%>
+			  <option value="<%=a.id%>" selected ><%=a.first_name + ' '+ a.last_name%></option>
+			  <% }else{ %>
+				<option value="<%=a.id%>"  ><%=a.first_name + ' '+ a.last_name%></option>
+			  <%} })%>
+			</select>
+		  </div>
+		<button type="submit" class="btn btn-primary">Modificar</button>
+	  </form>
+</div>
+
+			
+		</div>
+	</div>
+
+
+	<!-- /todos los productos -->
+
+	<!-- footer
+	<%- include('partials/footer') %>
+	/footer -->
+</body>	
+</html>

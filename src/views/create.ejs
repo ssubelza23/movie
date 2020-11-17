@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Todas las peliculas'}) %>
+<body>
+	<%- include('partials/headerNavbar') %>
+	<div class="container align-content-center">
+		<h2>Crear nueva pelicula</h2>
+		<div class="row">
+					
+<div class="col-9">
+	<form action="/movies/create" method="POST">
+		<div class="form-row">
+		  <div class="form-group col-md-6">
+			<label for="title">Titulo</label>
+			<input type="text" class="form-control" id="title" name="title">
+		  </div>
+		  <div class="form-group col-md-6">
+			<label for="rating">Rating</label>
+			<input type="text" class="form-control" id="rating" name="rating">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="awards">Premios</label>
+		  <input type="text" class="form-control" id="awards" name="awards">
+		</div>
+		<div class="form-group">
+		  <label for="release_date">Estreno</label>
+		  <input type="date" class="form-control" id="release_date" placeholder="aaaa/mm/dd" name="release_date">
+		</div>
+		<div class="form-row">
+		  <div class="form-group col-md-6">
+			<label for="length">Duracion</label>
+			<input type="text" class="form-control" id="length" name="length">
+		  </div>
+		  <div class="form-group col-md-4">
+			<label for="genre_id">Genero</label>
+			<select id="genre_id" class="form-control" name="genre_id">
+				
+			  <option selected enabled>...</option>
+			  <%generos.map(g=>{%>
+			  <option value="<%=g.id%>"><%=g.name%></option>
+			  <%})%>
+			</select>
+		  </div>
+		</div>
+		
+		<div class="form-group">
+			<label for="actores">Actores</label>
+			<select multiple class="form-control" id="actores" name="actores">
+				<%actores.map(a=>{%>
+			  <option value="<%=a.id%>"><%=a.first_name + ' '+ a.last_name%></option>
+			  <% })%>
+			</select>
+		  </div>
+		<button type="submit" class="btn btn-primary">crear</button>
+	  </form>
+</div>
+
+			
+		</div>
+	</div>
+
+
+	<!-- /todos los productos -->
+
+	<!-- footer
+	<%- include('partials/footer') %>
+	/footer -->
+</body>	
+</html>

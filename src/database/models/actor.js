@@ -12,7 +12,9 @@ module.exports = (sequelize,DataTypes)=>{
     });
    Actor.associate = models=>{
        Actor.belongsToMany(models.Movie,{
-         through:'actor_movie'  
+         through:'actor_movie',
+         as:'actores'
+
        })
    }
       

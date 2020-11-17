@@ -6,62 +6,68 @@
 	<%- include('partials/headerNavbar') %>
 	<!-- /Header -->
 
-
 	<!-- todos los productos -->
 	<div class="container align-content-center">
 		<div class="row">
-					<div class="col-6">
+					<div class="col-12">
 						<h2 class="products-title">Todas las peliculas</h2>
 					</div>
-					<div class="col-4">
-						<form class="form-inline">
-						  <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-						</form>
-					</div>
-					<div class="col-2">
-						<button type="button" class="btn btn-primary">Primary</button>
-					</div>
 					<div class="col-12">
-				<table class="table table-bordered table-hover">
-					<thead>
-					  <tr>
-						<th scope="col">numero</th>
-						<th scope="col">title</th>
+					<nav class="navbar navbar-light bg-light navbar-expand-lg">
+						<a class="navbar-brand" href="#">Filtrar </a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						  <span class="navbar-toggler-icon"></span>
+						</button>
+					  
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						  <ul class="navbar-nav mr-auto">
+							<li class="nav-item active">
+							  <a class="nav-link" href="/movies/recommended"> recommended</a>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="/movies/new">ultimos estrenos</a>
+							</li>
 						
-						<th scope="col">genero</th>
-						<th scope="col">actores</th>
-					  </tr>
-					</thead>
-					<tbody>
+							<li class="nav-item">
+								<a class="nav-link" href="/movies/create">crear nueva pelicula</a>
+							  </li>
+						  
+						  </ul>
+						  <form class="form-inline" action="/movies/search" method="POST">
+							<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="results">
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						  </form>
+						</div>
+					  </nav>
+					</div>
+					
+				
+				
+					<% peliculas.map((result)=>{ %>
+					<div class="col-4">
+						<div class="card-deck">
+							<div class="card">
+									<svg width="8em" height="8em" viewBox="0 0 16 16" class="bi bi-caret-right-square-fill card-img-top" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+									  </svg>
+							  <div class="card-body">
+								<h5 class="card-title"><a href="/movies/detail/<%= result.id%>"><%= result.title %></a></h5>
+								<p class="card-text"> <% result.actores.map((r)=>{ %>
+									<%= r.first_name + ' '+r.last_name+',' %>
+									<% }) %></p>
+								<p class="card-text"><small class="text-muted"><% if(result.Genre == null) { %>
+									sin genero
+									<% }else{%>
+										<%=  result.Genre.name %>
+										<% }%></small></p>
+							  </div>
 						
-						<% peliculas.map((result)=>{ %>
-					  <tr>
-						<th scope="row"><%= ++offset %></th>
-						<td><%= result.title %></td>
-						<% if(result.Genre == null) { %>
-						<td>sin genero</td>
-						<% }else{%>
-							<td><%=  result.Genre.name %></td>
-							<% }%>
-						<td><% result.actores.map((r)=>{ %>
-							<%= r.first_name + ' '+r.last_name+',' %>
-							<% }) %></td>
-					  </tr>
-					  <% }) %>
-					</tbody>
-				  </table>
+							</div>
+						  </div>
+						
 				  </div>
-				  <div class="col-12">
-				  <nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-end">
-					  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-					  <li class="page-item"><a class="page-link" href="/movies?limit=<%=limit%>&offset=<%=offset%>">1</a></li>
-					  <li class="page-item"><a class="page-link" href="/movies?limit=<%=limit%>&offset=<%=limit%>">2</a></li>
-					  <li class="page-item"><a class="page-link" href="#">3</a></li>
-					  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</ul>
-				  </nav>
-				  </div>
+				  <% }) %>
+				
 			</div>
 
 				

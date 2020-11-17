@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('partials/head', {title: '¿?'}) %>
+<%- include('partials/head', {title: 'Todas las peliculas'}) %>
 <body>
-	<!-- Header -->
 	<%- include('partials/headerNavbar') %>
 	<!-- /Header -->
 
-	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Detalle del producto:<%= pelicula.title %></h2>
-			</div>
-		</div>
-		<div class="product-detail">
-			<div class="row">
-				<div class="col-12 col-lg-8">
-					<img src="/images/fondo.png" alt="product image" class="product-detail-img">
-					<p class="product-detail-description">
-						<%= pelicula.rating %>
-					</p>
-				</div>
-				<div class="col-12 col-lg-4">
-					<article class="product-detail-info">
-						<h2 class="product-detail-title"><%= product.name %></h2>
-					
-						<hr>
 
-						<a href="/products/edit/<%= product.id %>" class="action-button edit">EDITAR PRODUCTO</a>
-						<form action="/products/delete/¿¿" method="POST" style="display: inline-flex">
-							<button type="submit" class="action-button delete">ELIMINAR</button>
-						</form>
-					</article>
-				</div>
-			</div>
+	<!-- todos los productos -->
+	<div class="row justify-content-md-center">
+		<div class="row">
+	
+<div class="col-12">
+	
+	<div class="card" style="width: 30rem;">
+		<img src="/images/peliculas/general.jpg" class="card-img-top" alt="...">
+		<div class="card-body">
+		  <h5 class="card-title"><%= pelicula.title%></h5>
+		 
+<p class="font-weight-light"> Rating: <span class="font-weight-bold"><%=pelicula.rating%></span></p>
+<p class="font-weight-light"> Premios: <span class="font-weight-bold"><%=pelicula.awards%></span></p>
+<p class="font-weight-light"> Estreno: <span class="font-weight-bold"><%=pelicula.release_date%></span></p>
+
+<div class="row">
+<div class="col-6"><a href="/movies/update/<%=pelicula.id%>" class="btn btn-outline-primary">MODIFICAR</a></div>
+<div class="col-6"><a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#staticBackdrop">ELIMINAR</a></div>
+</div>		  
+		  
+		</div>
+	 
+	  
+</div>
+</div>	
 		</div>
 	</div>
-	<!-- /product detail -->
-
-	<!-- footer -->
-	<%- include('partials/footer') %>
-	<!-- /footer -->
-
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="staticBackdropLabel">Seguro que deseas Eliminar?</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<%=pelicula.title%>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+		<form action="/movies/delete/<%=pelicula.id%>/?_method=DELETE" method="POST">
+			<button type="submit" class="btn btn-primary">ELIMINAR</button>
+		</form>
+		  
+	
+		</div>
+	  </div>
+	</div>
+  </div>
 </body>	
 </html>

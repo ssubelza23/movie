@@ -7,7 +7,7 @@ module.exports = (sequelize,DataTypes)=>{
         release_date:DataTypes.DATEONLY,
         length:DataTypes.INTEGER,
         genre_id:DataTypes.INTEGER,
-        deleted_at:DataTypes.TIMESTAMP
+       
     })
     Movie.associate=models=>{
         Movie.belongsTo(models.Genre
