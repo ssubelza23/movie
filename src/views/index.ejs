@@ -15,7 +15,7 @@
 			<% peliculas.map((result)=>{ %>
 				
 			<div class="col-sm-12 col-md-6 col-lg-3">
-				<a href="/products/detail/<%= result.id%>">
+				<a href="/movies/detail/<%= result.id%>">
 					<div class="card text-white bg-dark mb-3 shadow-sm p-3 mb-5 bg-black rounded text-white">
 					  
 					  <div class="card-body">
@@ -28,19 +28,7 @@
 			
 			<% }) %>
 	</div>
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-		  <li class="page-item disabled">
-			<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-		  </li>
-		  <li class="page-item"><a class="page-link" href="/?limit=1">1</a></li>
-		  <li class="page-item"><a class="page-link" href="/?limit=1">2</a></li>
-		  <li class="page-item"><a class="page-link" href="/?limit=1">3</a></li>
-		  <li class="page-item">
-			<a class="page-link" href="#">Next</a>
-		  </li>
-		</ul>
-	  </nav>
+
 	<!-- /todos los productos -->
 
 	<!-- footer
