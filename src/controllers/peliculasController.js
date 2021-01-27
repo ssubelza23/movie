@@ -9,20 +9,16 @@ const controller = {
 	peliculas: async  (req, res) => {
 		var limit=req.query.limit;
 		var offset=req.query.offset;
-	
 		if(limit==undefined){
 			limit=5;
 		}
 		if(offset==undefined){
-		
 			offset=0;
 		}
 		console.log(limit+'+++'+offset)
 		try {
 			const peliculas= await Movie.findAll({
 				include:['Genre','actores'],
-				
-				
 				})	
 		res.render('peliculas',{peliculas,limit,offset});
 		} catch (error) {
